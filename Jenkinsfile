@@ -7,13 +7,13 @@ node {
     sh "${mvnHOME}/bin/mvn package"
   }
   stage ('Email Notification'){
-    mail bcc: body: Hi Sourav,
+    mail bcc: body: ''' Hi Sourav,
 
 Your Jenkins job is executed successfully.
 
 Thanks & Regards
 
-Sourav Mallick.", cc: ", from: replyTo: ", subject: 'Jenkins Email Notification Service', to: 'mallicksourav487@gmail.com'
+Sourav Mallick.''', cc: ", from: ", replyTo: ", subject: 'Jenkins Email Notification Service', to: 'mallicksourav487@gmail.com'
   }
 }
 
