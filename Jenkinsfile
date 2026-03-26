@@ -16,7 +16,7 @@ Thanks & Regards
 Sourav Mallick.''', cc: '', from: '', replyTo: '', subject: 'Jenkins Email Notification Service', to: 'mallicksourav487@gmail.com'
   }
   stage ( 'Slack Notification'){
-    slackSend baseUrl: 'https://hooks.slack.com/services/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/', channel: 'jenkins-project', color: 'good', message: 'Hi Sourav, Welcome to world of slack'
+    slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-project', color: 'good', message: 'Hi Sourav', teamDomain: 'DevOps', tokenCredentialId: 'slack-final' 
   }
 }
 
