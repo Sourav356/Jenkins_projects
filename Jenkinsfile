@@ -1,6 +1,9 @@
+properties([parameters([choice(choices: ['master', 'main', 'feature'], description: 'Creating a parameterizes job', name: 'branch')])])
 node {
   stage('SCM Checkout') {
-    git branch: 'main', url: 'https://github.com/Sourav356/Jenkins_projects'
+    echo "Pulling changes from the branch ${params.branch}"
+    git branch: params.branch, url: 'https://github.com/Sourav356/Jenkins_projects'
+    
   }
   stage('compile - package') {
     def mvnHOME = tool name: 'Maven', type: 'maven'
