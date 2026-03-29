@@ -1,18 +1,19 @@
 properties([parameters([choice(choices: ['master', 'main', 'feature'], description: 'Creating a parameterizes job', name: 'branch')])])
 node {
+  def mvnHOME = tool name: 'Maven', type: 'maven'
+  
   stage('SCM Checkout') {
     echo "Pulling changes from the branch ${params.branch}"
     git branch: params.branch, url: 'https://github.com/Sourav356/Jenkins_projects'
     
   }
   stage('compile - package') {
-    def mvnHOME = tool name: 'Maven', type: 'maven'
     sh "${mvnHOME}/bin/mvn package"
   }
 
   stage('SonarQube Analysis') {
     withSonarQubeEnv('sonar_server') {
-      sh 'mvn clean package sonar:sonar'
+      sh "${mvnHOME}/bin/mvn clean package sonar:sonar"
     }
   }
 
